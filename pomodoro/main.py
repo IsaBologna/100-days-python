@@ -17,7 +17,7 @@ countdown_timer = None
 
 # ---------------------------- TIMER RESET ------------------------------- # 
 def reset_timer():
-    print("reset timer")
+    # print("reset timer")
     title_update = "Timer"
     title_label.config(text=title_update)
     window.after_cancel(countdown_timer)
@@ -68,6 +68,7 @@ window = Tk()
 window.title("Pomototoro")
 window.geometry("620x740")
 window.config(padx=20, pady=20, bg=LIGHT_GREEN)
+window.iconbitmap('plant.ico')
 
 title_label = Label(window, text="Timer", font=(FONT_NAME, 48, "bold"), bg=LIGHT_GREEN, fg=BROWN)
 title_label.grid(row=0, column=0, columnspan=3)
