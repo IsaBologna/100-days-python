@@ -7,11 +7,12 @@ BEIGE = "#A2A378"
 LIGHT_GREEN = "#E5F9DB"
 GREEN = "#A0D8B3"
 FONT_NAME = "Courier"
-WORK_MIN = 1
+WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 
 reps = 0
+a = "✓"
 
 # ---------------------------- TIMER RESET ------------------------------- # 
 def reset_timer():
@@ -25,14 +26,14 @@ def start_timer():
     
     if (reps % 2) == 1: # work 
         countdown_update(WORK_MIN*60)
-        title_update = "Timer"
+        title_update = "Work"
     elif (reps == 6): # 6o ciclo é a pausa longa
         countdown_update(LONG_BREAK_MIN*60)
-        title_update = "Long Break"
+        title_update = "Break"
         reps=0
     else: # breaks
         countdown_update(SHORT_BREAK_MIN*60)
-        title_update = "Short Break"
+        title_update = "Break"
         
     title_label.config(text=title_update)
     
@@ -44,6 +45,8 @@ def countdown_update(count):
     canvas.itemconfig(timer_text, text=time_update)
     if count > 0:
         window.after(1000, countdown_update, count-1)
+    else:
+        check.config()
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
@@ -61,7 +64,7 @@ canvas.create_image(300, 460, image=tomato_img)
 # timer
 timer_text = canvas.create_text(300, 520, text="00:00", fill=BROWN, font=(FONT_NAME,40, "bold"))
 #Counter
-canvas.create_text(300, 100, text="✓", fill=GREEN, font=(FONT_NAME, 48, "bold"))
+check = canvas.create_text(300, 100, text="", fill=GREEN, font=(FONT_NAME, 48, "bold"))
 canvas.grid(row=2, column=0, columnspan=3)
 
 #* BUTTONS
